@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About Indizia</title>
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/app.css">
+  <link rel="stylesheet" href="/styles/about.css">
+  <script type="module" src="/src/about.js"></script>
+</head>
+<body>
+  <header class="about-top"><a class="mark" href="/">Indiz<span>ia</span></a></header>
+  <main class="about">
+    <h1>About Indizia</h1>
+    <p class="lede">A free, non-commercial research engine for public sources. One search box, every finding cited, and a ledger of what was and was not searched.</p>
+
+    <nav class="toc" aria-label="On this page">
+      <a href="#privacy">Privacy</a><a href="#use">Acceptable use</a><a href="#removal">Corrections &amp; removal</a><a href="#sources">Sources &amp; licences</a><a href="#software">Software</a><a href="#imprint">Imprint</a>
+    </nav>
+
+    <section id="privacy">
+      <h2>Privacy</h2>
+      <ul>
+        <li><strong>Most queries go straight from your browser to the source</strong> (for example RDAP registries, RIPEstat, GLEIF, Wikidata). Indizia's server does not see them.</li>
+        <li><strong>Some sources send no CORS headers</strong> (crt.sh, the Wayback CDX API, DENIC, CIRCL hashlookup, GDELT, TED) and are reached through Indizia's relay. The relay only talks to an allowlist of hosts, keeps nothing, and does not log query content.</li>
+        <li><strong>Username checks</strong> run on Indizia's server against about 600 public sites. The username is sent to those sites in the profile URL, as it would be by any visitor.</li>
+        <li><strong>Files you attach are analysed in your browser</strong> and never uploaded. Only if you choose to look up a file's hash is that hash sent to CIRCL.</li>
+        <li><strong>Search history, pinned findings and settings</strong> are stored in your browser only (localStorage). There are no accounts, cookies, analytics or trackers.</li>
+        <li><strong>Optional:</strong> organisation-name suggestions send what you type to Wikidata and GLEIF. You can turn this off in Settings.</li>
+        <li><strong>Case documents</strong> are read, OCR'd and indexed in your browser and stored only there (IndexedDB), originals included. Delete a document and everything derived from it is gone.</li>
+        <li><strong>Investigation briefs</strong> use a model only if you have one: on your own computer (Ollama), or the Anthropic API with your own key, in which case the numbered evidence of that brief is sent to Anthropic. Usernames, emails and phone numbers are never sent to a model.</li>
+        <li><strong>Hosting:</strong> the website and its relay run on Cloudflare Workers (Cloudflare, Inc.), which processes your IP address to deliver pages and fend off attacks. Indizia has request logging switched off. Rate limits count requests per IP address for one minute and keep nothing longer. Desktop downloads are served by GitHub.</li>
+        <li><strong>Desktop app:</strong> the same app runs on your computer, so relay, username and fingerprint requests leave from your own connection (or, if you choose, from an isolated Docker container). The local toolbox runs subfinder and dnsx in throwaway containers; they ask public sources and public DNS resolvers, never the target. httpx, off by default, requests each live homepage of the searched domain once.</li>
+      </ul>
+      <p><strong>Controller</strong> under the GDPR is the operator named in the <a href="#imprint">imprint</a>. The legal basis for the short-lived processing of IP addresses by the host is a legitimate interest in running a secure site (Art. 6 (1) (f) GDPR). Everything else stays on your device. You have the right of access, rectification, erasure, restriction and objection (Art. 15–21 GDPR), and the right to complain to a supervisory authority, for example the <a href="https://www.ldi.nrw.de" target="_blank" rel="noopener noreferrer">LDI NRW</a>.</p>
+    </section>
+
+    <section id="use">
+      <h2>Acceptable use</h2>
+      <p>Indizia is for journalism, research, defensive security, fraud prevention and checking your own exposure. Do not use it to harass, stalk, threaten or expose anyone, or to locate private individuals. Disseminating personal data to put someone at risk is a criminal offence in Germany (§ 126a StGB).</p>
+      <p>By design Indizia does not offer face recognition, breach or credential search, reverse lookup of private phone numbers, account linking from email addresses, or port and vulnerability scanning. The only optional active check (httpx in the desktop app) fetches a homepage once, like a visit, and only for the domain you searched. Username checks skip adult, dating, health and political sites, and results are labelled as presence signals, not identity.</p>
+    </section>
+
+    <section id="removal">
+      <h2>Corrections and removal requests</h2>
+      <p>Indizia does not keep a database of people. Results are fetched live from the sources listed below, so most corrections must be made at the source. The cached data Indizia itself holds (website icons, username-site definitions) contains no personal data.</p>
+      <p>If you believe a result is wrong or harmful, write to the address in the <a href="#imprint">imprint</a> with the search term and the finding. You will get an answer within 14 days.</p>
+    </section>
+
+    <section id="sources">
+      <h2>Sources and licences</h2>
+      <p>Every source Indizia queries, with its terms. Confidence labels describe each claim; the reliability grade (A completely reliable … D not usually reliable, F cannot be judged; after the NATO/Admiralty scale) describes the source in general. Hover a grade for the reason.</p>
+      <div class="tw"><table id="source-table"><thead><tr><th>Source</th><th>Provider</th><th>Input</th><th>Access</th><th>Grade</th><th>Terms / licence</th></tr></thead><tbody></tbody></table></div>
+      <h3>Datasets bundled with Indizia</h3>
+      <ul>
+        <li><strong>WhatsMyName</strong> site definitions, © Micah Hoffman and contributors, <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a>. Filtered by Indizia (adult, dating, health and political sites removed).</li>
+        <li><strong>OSINT Framework</strong> tool directory, © Justin Nordine and contributors, MIT licence.</li>
+        <li>Map tiles and geocoding © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>, ODbL.</li>
+        <li>News data: the GDELT Project. Offshore Leaks data: ICIJ, ODbL / CC BY-SA. LEI data: GLEIF, CC0.</li>
+      </ul>
+    </section>
+
+    <section id="software">
+      <h2>Software</h2>
+      <p>Indizia is © 2026 Imran Moujtahid and is free software under the <a href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noopener noreferrer">GNU Affero General Public License v3.0 or later</a>. If you run a modified version for others, you must offer them its source code.</p>
+      <p>Source code: <a href="https://github.com/im3an/indizia" target="_blank" rel="noopener noreferrer">github.com/im3an/indizia</a>.</p>
+      <p>pdf.js (Apache-2.0), exifr (MIT), libphonenumber-js (MIT), Leaflet (BSD-2-Clause). Desktop app: Electron (MIT); toolbox images ProjectDiscovery subfinder, dnsx and httpx (MIT), downloaded from Docker Hub at pinned versions. Document workspace: tesseract.js and its English/German models (Apache-2.0), MiniSearch (MIT), jsdiff (BSD-3-Clause). Map: Leaflet.markercluster (MIT), OpenTopoMap tiles (CC-BY-SA), Sentinel-2 cloudless imagery by EOX IT Services (2016 CC BY 4.0, later years CC BY-NC-SA 4.0; contains modified Copernicus Sentinel data). Fonts: IBM Plex Sans and Mono, Newsreader (SIL Open Font License). The logo uses your system's Helvetica where available.</p>
+    </section>
+
+    <section id="imprint">
+      <h2>Imprint (Impressum)</h2>
+      <p lang="de">Angaben gemäß § 5 DDG:</p>
+      <address lang="de">Imran Moujtahid<br>Halstenbachstraße 3b<br>51645 Gummersbach<br>Deutschland<br>E-Mail: <a href="mailto:imranmoujtahid@gmail.com">imranmoujtahid@gmail.com</a></address>
+      <p>Indizia is a private, non-commercial project. It sells nothing, shows no advertising and has no accounts.</p>
+    </section>
+  </main>
+</body>
+</html>

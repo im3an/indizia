@@ -1,0 +1,36 @@
+/* Print / "Save as PDF" report. */
+@page { margin: 16mm 14mm; }
+body { background: #fff !important; color: #111 !important; font-size: 11pt; }
+.topbar, .tabs, .filters, .f-actions, .pivots, .foot, .scrim, .drawer, .toast, .dropzone, .suggest, #next-panel, .gate, .l-go, .skip { display: none !important; }
+.print-head { display: block !important; margin-bottom: 12pt; }
+.print-head h1 { font: 700 20pt/1.2 "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0 0 4pt; }
+.print-head p { margin: 0; color: #444; font-size: 9.5pt; }
+.results { padding: 0 !important; max-width: none !important; }
+.entity { display: none; }
+.layout { display: block !important; }
+.secondary { position: static !important; max-height: none !important; overflow: visible !important; margin-top: 16pt; }
+.view[hidden] { display: none !important; }
+.card, .finding, .panel, .row, .linklist li, .tool { break-inside: avoid; box-shadow: none !important; animation: none !important; }
+.card-grid { grid-template-columns: 1fr 1fr !important; grid-auto-rows: auto !important; }
+.card-grid > * { grid-row-end: auto !important; }
+.finding { grid-template-columns: 90pt 1fr !important; padding-left: 0 !important; }
+.conf-bar { display: none !important; }
+.label { position: static !important; width: auto !important; height: auto !important; margin: 0 !important; clip: auto !important; font: 500 8pt/1.4 var(--mono); }
+.hovercard { display: none !important; }
+details > *:not(summary) { display: block !important; }
+details summary { list-style: none; }
+a { color: #111; text-decoration: none; }
+.linklist a.l-main::after, .f-title + a::after { content: ""; }
+.bar i.s-running { animation: none; }
+
+/* Case report: only the report prints. */
+body.printing-case > *:not(.print-report) { display: none !important; }
+body.printing-case .print-report { display: block !important; font: 10pt/1.45 "Helvetica Neue", Helvetica, Arial, sans-serif; color: #111; }
+.print-report h1 { font-size: 20pt; margin: 0 0 8pt; }
+.print-report h2 { font-size: 13pt; margin: 14pt 0 5pt; border-top: 0.5pt solid #bbb; padding-top: 8pt; break-after: avoid; }
+.print-report h3 { font-size: 11pt; margin: 10pt 0 4pt; break-after: avoid; }
+.print-report table { border-collapse: collapse; width: 100%; font-size: 8.5pt; }
+.print-report th, .print-report td { border-bottom: 0.5pt solid #ccc; padding: 3pt 5pt; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+.print-report tr, .print-report li { break-inside: avoid; }
+.print-report pre, .print-report code { font: 8pt/1.4 "Plex Mono", Menlo, monospace; white-space: pre-wrap; overflow-wrap: anywhere; }
+.print-report pre { border: 0.5pt solid #ccc; padding: 5pt; }

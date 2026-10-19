@@ -1,0 +1,36 @@
+# Deploy with: npm ci && npx wrangler deploy   (Workers Free plan: 100k requests/day, 10 ms CPU per request)
+name = "indizia"
+main = "worker/index.mjs"
+compatibility_date = "2025-09-01"
+send_metrics = false # top-level key: it must stay above the first [table], or TOML puts it inside that table
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+not_found_handling = "single-page-application"
+run_worker_first = ["/api/*"]
+
+[observability]
+enabled = false   # no request logs: queries must not be stored
+
+# Shared rate limits per client IP (period: 10 or 60 s). They mirror the per-instance limits in server/api.mjs,
+# which still apply everywhere; these make them hold across Worker instances. Counters are kept for one window.
+[[ratelimits]]
+name = "RL_RELAY"
+namespace_id = "1001"
+simple = { limit = 120, period = 60 }
+
+[[ratelimits]]
+name = "RL_USERNAME"
+namespace_id = "1002"
+simple = { limit = 75, period = 60 }
+
+[[ratelimits]]
+name = "RL_FINGERPRINT"
+namespace_id = "1003"
+simple = { limit = 20, period = 60 }
+
+[[ratelimits]]
+name = "RL_ICON"
+namespace_id = "1004"
+simple = { limit = 400, period = 60 }

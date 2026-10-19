@@ -1,0 +1,23 @@
+# Self-hosting: `docker compose up -d`, then open http://127.0.0.1:8080
+# Locked down: read-only filesystem, no Linux capabilities, no privilege escalation, capped memory and
+# processes, published on localhost only. Put a reverse proxy in front to serve it to other machines.
+services:
+  indizia:
+    build: .
+    image: indizia:0.4.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      INDIZIA_LOCAL: "1" # single-user install: higher rate limits. Remove for a shared deployment.
+    read_only: true
+    tmpfs:
+      - /tmp:size=16m
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 128
+    mem_limit: 384m
+    cpus: 1.0
+    labels:
+      app.indizia: "1"

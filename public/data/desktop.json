@@ -1,0 +1,10 @@
+{
+  "version": "0.4.0",
+  "repo": null,
+  "assets": {
+    "mac-arm64": { "file": "Indizia-mac-arm64.dmg", "label": "macOS · Apple silicon", "os": "mac" },
+    "mac-x64": { "file": "Indizia-mac-x64.dmg", "label": "macOS · Intel", "os": "mac" },
+    "win-x64": { "file": "Indizia-win-x64.exe", "label": "Windows 10 and 11 · 64-bit", "os": "win" },
+    "linux-x64": { "file": "Indizia-linux-x86_64.AppImage", "label": "Linux · AppImage, x86-64", "os": "linux" }
+  }
+}

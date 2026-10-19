@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Indizia Desktop</title>
+  <meta name="description" content="Indizia for macOS, Windows and Linux: the full web version plus a local Docker toolbox and an isolated network engine.">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles/app.css">
+  <link rel="stylesheet" href="/styles/about.css">
+  <script type="module" src="/src/download.js"></script>
+</head>
+<body>
+  <header class="about-top"><a class="mark" href="/">Indiz<span>ia</span></a></header>
+  <main class="about download">
+    <h1>Indizia Desktop</h1>
+    <p class="lede">Everything in the web version, running on your own computer, plus tools a browser cannot run. Free, no account, and nothing leaves your machine unless a source has to be asked.</p>
+
+    <div class="dl-hero" id="dl-hero">
+      <a class="btn dl-main" id="dl-main" href="#build">Download</a>
+      <p class="dl-meta" id="dl-meta">Version <span id="dl-version">…</span></p>
+    </div>
+    <p class="todo" id="dl-unpublished" hidden>No public build has been published yet. You can build the app yourself from the source in a few minutes (see <a href="#build">Build it yourself</a>).</p>
+    <ul class="dl-other" id="dl-other" aria-label="Other platforms"></ul>
+
+    <section>
+      <h2>What the desktop app adds</h2>
+      <div class="dl-grid">
+        <article>
+          <h3>Local toolbox</h3>
+          <p>Runs ProjectDiscovery <b>subfinder</b> (passive subdomain discovery from about 50 sources), <b>dnsx</b> (which names still resolve) and, if you switch it on, <b>httpx</b> (live web servers and technologies) on domain searches. Results land in the ledger, graph and evidence drawer like every other source.</p>
+        </article>
+        <article>
+          <h3>Clean, throwaway containers</h3>
+          <p>Each tool runs in Docker as an unprivileged user, read-only, without Linux capabilities, with memory and process limits, and is removed when it finishes. Images are pinned to exact versions. One click removes them again.</p>
+        </article>
+        <article>
+          <h3>Isolated network engine</h3>
+          <p>Optionally, every server-side request (relay, username checks, website fingerprint, icons) is made from a locked-down container instead of the app, and the container is removed when you quit.</p>
+        </article>
+        <article>
+          <h3>No open port</h3>
+          <p>The app serves itself over a private in-app protocol inside its own window. No local web server is listening, so other programs and websites cannot reach it.</p>
+        </article>
+        <article>
+          <h3>Your own limits</h3>
+          <p>No shared deployment means ten times the request allowance for the relay, username checks and fingerprint. Requests come from your connection, as if you visited the source.</p>
+        </article>
+        <article>
+          <h3>Native feel</h3>
+          <p>App menu with keyboard shortcuts, <kbd>⌥</kbd><kbd>⇧</kbd><kbd>S</kbd> from anywhere to bring up the search box, native save dialogs for every export, and links that open in your normal browser.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Requirements</h2>
+      <ul>
+        <li>macOS 12 or newer, Windows 10 or 11 (64-bit), or a 64-bit Linux desktop.</li>
+        <li><strong>Docker is optional.</strong> Without it the app works exactly like the web version. With <a href="https://docs.docker.com/desktop/" target="_blank" rel="noopener noreferrer">Docker Desktop</a>, <a href="https://orbstack.dev/" target="_blank" rel="noopener noreferrer">OrbStack</a> or Docker Engine running, the toolbox and the isolated engine become available. subfinder and dnsx are about 45 MB to download; httpx about 275 MB.</li>
+      </ul>
+    </section>
+
+    <section id="first-launch">
+      <h2>First launch</h2>
+      <p>Indizia is free and has no budget for paid code-signing certificates, so your system will warn you once. Each build is made in public by GitHub Actions from the source code, and you can check that the file you downloaded is that build (see below).</p>
+      <ul>
+        <li><strong>macOS:</strong> open the app once. When macOS says it cannot verify the developer, click <b>Done</b>, open <b>System Settings → Privacy &amp; Security</b>, scroll down and click <b>Open Anyway</b> next to Indizia, then confirm. You only do this once.</li>
+        <li><strong>Windows:</strong> if SmartScreen shows <i>Windows protected your PC</i>, click <b>More info → Run anyway</b>.</li>
+        <li><strong>Linux:</strong> make the AppImage executable (<code>chmod +x Indizia-linux-x86_64.AppImage</code>) and run it.</li>
+      </ul>
+      <h3>Check your download</h3>
+      <p>Every release lists SHA-256 checksums in <code>SHA256SUMS.txt</code> and carries a build attestation signed by GitHub. With the <a href="https://cli.github.com/" target="_blank" rel="noopener noreferrer">GitHub CLI</a>:</p>
+      <pre class="dl-code"><code>gh attestation verify Indizia-mac-arm64.dmg --repo im3an/indizia</code></pre>
+    </section>
+
+    <section id="build">
+      <h2>Build it yourself</h2>
+      <p>Needs Node 20 or newer. The installer ends up in <code>desktop/dist/</code>.</p>
+      <pre class="dl-code"><code>git clone https://github.com/im3an/indizia.git
+cd indizia
+npm install
+cd desktop
+npm install
+npm run dist</code></pre>
+      <p>To try it without packaging, run <code>npm start</code> in <code>desktop/</code> instead.</p>
+    </section>
+
+    <section>
+      <h2>Prefer a server?</h2>
+      <p>Run Indizia in a hardened container and open it in your browser (the toolbox stays desktop-only, because a server container should not control Docker):</p>
+      <pre class="dl-code"><code>docker compose up -d</code></pre>
+      <p>Then open <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a>. Details in the README.</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,248 @@
+{
+ "version": 0.6,
+ "generator": "Overpass API 0.7.62.4 2390de5a",
+ "osm3s": {
+  "timestamp_osm_base": "2026-10-18T17:48:32Z",
+  "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+ },
+ "elements": [
+  {
+   "type": "node",
+   "id": 66917229,
+   "lat": 52.5167295,
+   "lon": 13.3797732,
+   "tags": {
+    "addr:city": "Berlin",
+    "addr:housenumber": "4A",
+    "addr:postcode": "10117",
+    "addr:street": "Pariser Platz",
+    "amenity": "cafe",
+    "brand": "Starbucks",
+    "brand:wikidata": "Q37158",
+    "brand:wikipedia": "en:Starbucks",
+    "check_date:opening_hours": "2023-03-20",
+    "cuisine": "coffee_shop",
+    "diet:vegan": "yes",
+    "diet:vegetarian": "yes",
+    "indoor_seating": "yes",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "Starbucks",
+    "official_name": "Starbucks Coffee",
+    "opening_hours": "Mo-Fr 08:00-21:00; Sa,Su 09:00-21:00",
+    "outdoor_seating": "yes",
+    "phone": "+49 30 20617990",
+    "takeaway": "yes",
+    "toilets:wheelchair": "no",
+    "website": "https://www.starbucks.de/store-locator/store/2099/pariser-platz-pariser-platz-4-a-berlin-be-10117-de",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 307642432,
+   "lat": 52.5172949,
+   "lon": 13.3769238,
+   "tags": {
+    "amenity": "fast_food",
+    "indoor_seating": "no",
+    "name": "Wurst",
+    "outdoor_seating": "yes",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 355960992,
+   "lat": 52.5165081,
+   "lon": 13.3779152,
+   "tags": {
+    "addr:city": "Berlin",
+    "addr:country": "DE",
+    "addr:housenumber": "8",
+    "addr:postcode": "10117",
+    "addr:street": "Pariser Platz",
+    "addr:suburb": "Mitte",
+    "amenity": "place_of_worship",
+    "check_date": "2025-06-30",
+    "contact:email": "raum-der-stille@berlin.de",
+    "contact:website": "http://www.raum-der-stille-im-brandenburger-tor.de/",
+    "description": "Meditationsraum",
+    "name": "Raum der Stille",
+    "name:de": "Raum der Stille",
+    "name:en": "Room of Silence",
+    "name:ru": "Комната тишины",
+    "opening_hours": "11:00-18:00",
+    "place_of_worship": "room",
+    "religion": "multifaith",
+    "start_date": "1994",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 531315561,
+   "lat": 52.5171689,
+   "lon": 13.3776044,
+   "tags": {
+    "addr:city": "Berlin",
+    "addr:country": "DE",
+    "addr:housenumber": "24",
+    "addr:postcode": "10117",
+    "addr:street": "Ebertstraße",
+    "addr:suburb": "Mitte",
+    "amenity": "restaurant",
+    "brewery": "Hofbräuhaus Traunstein",
+    "contact:phone": "+49 30 20458637",
+    "cuisine": "international",
+    "indoor_seating": "yes",
+    "name": "Hopfingerbräu im Palais",
+    "opening_hours": "Mo-Su 11:00-24:00",
+    "outdoor_seating": "yes",
+    "toilets:wheelchair": "yes",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1239838755,
+   "lat": 52.5169216,
+   "lon": 13.3776789,
+   "tags": {
+    "check_date": "2025-09-30",
+    "name": "Souvenir Bistro",
+    "shop": "gift",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1489358328,
+   "lat": 52.516009,
+   "lon": 13.3765467,
+   "tags": {
+    "check_date": "2025-12-14",
+    "information": "map",
+    "name": "Infotafel Berliner Mauer",
+    "tourism": "information"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1588468041,
+   "lat": 52.5160792,
+   "lon": 13.3779103,
+   "tags": {
+    "check_date": "2026-05-25",
+    "check_date:opening_hours": "2026-05-25",
+    "information": "office",
+    "name": "Berlin Tourist Info",
+    "opening_hours": "09:00-18:00",
+    "tourism": "information",
+    "wheelchair": "no"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1653338938,
+   "lat": 52.5169683,
+   "lon": 13.3785815,
+   "tags": {
+    "addr:city": "Berlin",
+    "addr:country": "DE",
+    "addr:housenumber": "6",
+    "addr:postcode": "10117",
+    "addr:street": "Pariser Platz",
+    "addr:suburb": "Mitte",
+    "contact:website": "https://www.governance-platform.org/",
+    "name": "Humboldt-Viadrina Governance Platform",
+    "office": "company",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1760855223,
+   "lat": 52.5159466,
+   "lon": 13.3780432,
+   "tags": {
+    "amenity": "bank",
+    "brand": "Commerzbank",
+    "brand:wikidata": "Q157617",
+    "brand:wikipedia": "de:Commerzbank",
+    "name": "Commerzbank",
+    "opening_hours": "Sa 09:00-17:00",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 1989574722,
+   "lat": 52.5152967,
+   "lon": 13.37913,
+   "tags": {
+    "addr:city": "Berlin",
+    "addr:country": "DE",
+    "addr:housenumber": "3",
+    "addr:postcode": "10117",
+    "addr:street": "Pariser Platz",
+    "addr:suburb": "Mitte",
+    "check_date": "2024-04-18",
+    "name": "DSC Legal",
+    "office": "notary",
+    "website": "https://www.dsc-legal.com/de/"
+   }
+  },
+  {
+   "type": "node",
+   "id": 2287986935,
+   "lat": 52.5157252,
+   "lon": 13.3789891,
+   "tags": {
+    "addr:city": "Berlin",
+    "addr:country": "DE",
+    "addr:housenumber": "3",
+    "addr:postcode": "10117",
+    "addr:street": "Pariser Platz",
+    "addr:suburb": "Mitte",
+    "amenity": "bank",
+    "brand": "DZ Bank",
+    "check_date": "2025-04-17",
+    "name": "DZ-Bank",
+    "note": "בנק DZ עם פסל הדג השוכב",
+    "opening_hours": "Mo-Fr 09:00-18:00",
+    "operator": "DZ Bank AG Deutsche Zentral-Genossenschaftsbank, Frankfurt am Main",
+    "wheelchair": "yes"
+   }
+  },
+  {
+   "type": "node",
+   "id": 3786417057,
+   "lat": 52.51627,
+   "lon": 13.3777021,
+   "tags": {
+    "artist_name": "Johann Gottfried Schadow",
+    "artwork_type": "statue",
+    "direction": "east",
+    "height": "26",
+    "location": "roof",
+    "min_height": "20",
+    "name": "Quadriga mit Victoria",
+    "name:be": "Квадрыга Вікторыя",
+    "name:de": "Quadriga mit Victoria",
+    "name:en": "Quadriga with Victoria",
+    "name:fr": "Quadrige de la Victoire",
+    "name:it": "Quadriga con Vittoria",
+    "name:nl": "Quadriga met Victoria",
+    "name:ru": "Квадрига Виктория",
+    "note": "Das ist nicht das Brandenburger Tor (welches separat gemappt wurde), sondern die darauf befindliche Statue der Quadriga. Bitte hierfür nicht den Namen \"Brandenburger Tor\" vergeben.",
+    "note:en": "This is NOT the Brandenburg Gate (which is mapped separately) but the Quadriga on top. Please do not name this artwork Brandenburg Gate etc.",
+    "start_date": "1793",
+    "toilets:wheelchair": "no",
+    "tourism": "artwork",
+    "wheelchair": "no",
+    "wikidata": "Q90610978"
+   }
+  }
+ ]
+}

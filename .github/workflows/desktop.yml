@@ -1,0 +1,75 @@
+name: Desktop release
+# Push a tag like v0.4.0 to build installers for macOS, Windows and Linux and attach them to a GitHub
+# release. File names are fixed (Indizia-mac-arm64.dmg, …), so /releases/latest/download/<file> on the
+# website's download page always points at the newest build.
+#
+# A draft release is created first, every platform uploads into it and gets a build-provenance attestation
+# (verify with `gh attestation verify <file> --repo im3an/indizia`), then SHA256SUMS.txt is added and the
+# draft is published. "Latest" therefore never points at a half-uploaded release.
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: write
+jobs:
+  draft:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create the draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release view "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || gh release create "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --draft --verify-tag --title "Indizia $GITHUB_REF_NAME" --generate-notes
+
+  build:
+    needs: draft
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-14
+            args: --mac --arm64 --x64
+          - os: windows-latest
+            args: --win --x64
+          - os: ubuntu-latest
+            args: --linux --x64
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Install desktop build tools
+        working-directory: desktop
+        run: npm ci
+      - name: Build and upload to the draft
+        working-directory: desktop
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: npx electron-builder ${{ matrix.args }} --publish always -c.publish.provider=github -c.publish.owner=${GITHUB_REPOSITORY%/*} -c.publish.repo=${GITHUB_REPOSITORY#*/} -c.publish.releaseType=draft
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: desktop/dist/Indizia-*
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add checksums and publish the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir assets && cd assets
+          gh release download "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --pattern 'Indizia-*'
+          rm -f ./*.blockmap
+          sha256sum Indizia-* | tee SHA256SUMS.txt
+          gh release upload "$GITHUB_REF_NAME" SHA256SUMS.txt --repo "$GITHUB_REPOSITORY" --clobber
+          gh release edit "$GITHUB_REF_NAME" --repo "$GITHUB_REPOSITORY" --draft=false --latest

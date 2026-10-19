@@ -1,0 +1,51 @@
+{
+  "name": "indizia-desktop",
+  "productName": "Indizia",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Indizia desktop: the open OSINT research engine with a local Docker toolbox.",
+  "author": "Imran Moujtahid",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "main": "main.mjs",
+  "scripts": {
+    "start": "electron .",
+    "icon": "node scripts/icon.mjs",
+    "dist": "npm --prefix .. run postinstall && electron-builder --publish never",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:win": "electron-builder --win --publish never",
+    "dist:linux": "electron-builder --linux --publish never",
+    "release": "electron-builder --publish always -c.publish.provider=github"
+  },
+  "devDependencies": {
+    "electron": "44.5.1",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "app.indizia.desktop",
+    "productName": "Indizia",
+    "copyright": "© 2026 Imran Moujtahid",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.mjs", "engine.mjs", "package.json", "build/icon.png", "!node_modules/**/*"],
+    "extraResources": [
+      { "from": "../public", "to": "public", "filter": ["**/*"] },
+      { "from": "../server", "to": "server", "filter": ["**/*"] },
+      { "from": "../docker", "to": "docker", "filter": ["engine.Dockerfile"] }
+    ],
+    "asar": true,
+    "compression": "maximum",
+    "electronLanguages": ["en", "en-US", "de"],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [{ "target": "dmg", "arch": ["arm64", "x64"] }],
+      "artifactName": "Indizia-mac-${arch}.${ext}",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "identity": "-"
+    },
+    "dmg": { "title": "Indizia ${version}" },
+    "win": { "target": [{ "target": "nsis", "arch": ["x64"] }], "artifactName": "Indizia-win-${arch}.${ext}" },
+    "nsis": { "oneClick": true, "perMachine": false, "deleteAppDataOnUninstall": false },
+    "linux": { "target": [{ "target": "AppImage", "arch": ["x64"] }], "category": "Utility", "artifactName": "Indizia-linux-${arch}.${ext}" }
+  }
+}

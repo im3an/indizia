@@ -1,0 +1,36 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "indizia",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "server/node.mjs"
+      ],
+      "port": 5173
+    },
+    {
+      "name": "indizia-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "5180",
+        "--directory",
+        "public"
+      ],
+      "port": 5180
+    },
+    {
+      "name": "indizia-toolbox",
+      "runtimeExecutable": "env",
+      "runtimeArgs": [
+        "PORT=5188",
+        "INDIZIA_TOOLBOX=1",
+        "node",
+        "server/node.mjs"
+      ],
+      "port": 5188
+    }
+  ]
+}
