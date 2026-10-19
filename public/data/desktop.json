@@ -1,6 +1,6 @@
 {
   "version": "0.4.0",
-  "repo": null,
+  "repo": "im3an/indizia",
   "assets": {
     "mac-arm64": { "file": "Indizia-mac-arm64.dmg", "label": "macOS · Apple silicon", "os": "mac" },
     "mac-x64": { "file": "Indizia-mac-x64.dmg", "label": "macOS · Intel", "os": "mac" },
